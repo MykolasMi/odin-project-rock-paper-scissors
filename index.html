@@ -8,8 +8,9 @@
 </head>
 <body>
     <script>
-        console.log("Hello world!")
-    
+        let playerScore=0;
+        let computerScore=0;
+
         function computerPlay () {
             let options = [
                 "scissors",
@@ -21,22 +22,52 @@
             return randomPick
         }
     
-        let humanPick = "ROCK";
-        let humanPlay = humanPick.toLowerCase();
-        randomPick = computerPlay();
-        console.log (randomPick);
+        //let humanPick = "ROCK";
+        //let humanPlay = humanPick.toLowerCase();
+        //randomPick = computerPlay();
+        //console.log (randomPick);
+        let message;
     
         function playRound (randomPick, humanPlay) {
             if ((randomPick=="scissors" && humanPlay=="paper") || (randomPick=="paper" && humanPlay=="rock") || (randomPick=="rock" && humanPlay=="scissors")) {
-                return ("You Lose! " + randomPick + " beat " + humanPlay);
+                //return (("You Lose! " + randomPick + " beats " + humanPlay))
+                message = "You Lose! ${randomPick}"
+                ++computerScore;
             } else if ((randomPick=="scissors" && humanPlay=="rock") || (randomPick=="paper" && humanPlay=="scissors") || (randomPick=="rock" && humanPlay=="paper")) {
-                return ("You Win! " + humanPlay + " beat " + randomPick);
+                //return (("You Win! " + humanPlay + " beats " + randomPick))
+                message = "You Win!"
+                ++playerScore;
             } else {
                 return "Tie! Both picks were equal";
             }
         }
-    
-        console.log(playRound(randomPick, humanPlay))
+
+        function game() {
+            for (let i =0; i < 5; i++) {
+                let humanPick = prompt("What is your pick?");
+                let humanPlay = humanPick.toLowerCase();
+                let randomPick = computerPlay();
+                playRound(randomPick, humanPlay);
+                console.log(message);
+                //console.log(playRound(randomPick, humanPlay));
+            }
+            console.log(getWinner())
+        }
+
+        function getWinner() {
+            console.log(playerScore);
+            if (playerScore>computerScore) {
+                return "You Won! Congratulations!";
+        }
+            else if (computerScore>playerScore) {
+                return "You Lost! Bad luck";
+        }
+            else {
+                return "It's a tie!"
+            }
+    }
+  // issiaiskinti kodel player/computerscore neieina i getwinner funkcija
+        console.log (game());
     </script>
 </body>
 </html>
