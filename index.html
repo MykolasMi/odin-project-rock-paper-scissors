@@ -6,22 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<script>
-    console.log("Hello world!")
-
-    function computerPlay () {
-        let options = [
-            "Scissors",
-            "Paper",
-            "Rock"
-        ]
-        let randomPick = options[Math.floor(Math.random() * options.length)]
-        return randomPick
-    }
-
-    console.log(computerPlay())
-</script>
 <body>
+    <script>
+        console.log("Hello world!")
     
+        function computerPlay () {
+            let options = [
+                "scissors",
+                "paper",
+                "rock"
+            ]
+            let randomPick = options[Math.floor(Math.random() * options.length)]
+    
+            return randomPick
+        }
+    
+        let humanPick = "ROCK";
+        let humanPlay = humanPick.toLowerCase();
+        randomPick = computerPlay();
+        console.log (randomPick);
+    
+        function playRound (randomPick, humanPlay) {
+            if ((randomPick=="scissors" && humanPlay=="paper") || (randomPick=="paper" && humanPlay=="rock") || (randomPick=="rock" && humanPlay=="scissors")) {
+                return ("You Lose! " + randomPick + " beat " + humanPlay);
+            } else if ((randomPick=="scissors" && humanPlay=="rock") || (randomPick=="paper" && humanPlay=="scissors") || (randomPick=="rock" && humanPlay=="paper")) {
+                return ("You Win! " + humanPlay + " beat " + randomPick);
+            } else {
+                return "Tie! Both picks were equal";
+            }
+        }
+    
+        console.log(playRound(randomPick, humanPlay))
+    </script>
 </body>
 </html>
